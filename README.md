@@ -7,7 +7,7 @@
 ## 🚀 Live Demo
 
 Experience VibeBlog live:  
-👉 [VibeBlog Live Demo](#) *(https://vibe-blog-three.vercel.app)*
+👉 [VibeBlog Live Demo](#) *(Replace this with your deployment link)*
 
 ---
 
@@ -60,9 +60,20 @@ Experience VibeBlog live:
 
 *(Replace the placeholders below with actual images)*
 
-![Alt Text](./assets/screenshot_1.png)
-![Alt Text](./assets/screenshot_2.png)
-![Alt Text](./assets/screenshot_3.png)
+- **Homepage**  
+  ![Homepage](#)
+
+- **Single Post View**  
+  ![Single Post View](#)
+
+- **Login Page**  
+  ![Login Page](#)
+
+- **Create New Post**  
+  ![Create New Post](#)
+
+- **Mobile View**  
+  ![Responsive Design](#)
 
 ---
 
@@ -132,3 +143,7 @@ Let’s connect:
 - **📷 Instagram:** [@mr._perfect_1004](https://instagram.com/mr._perfect_1004)
 
 ---
+
+## 📄 License
+
+This project is open-source and available under the [MIT License](LICENSE).

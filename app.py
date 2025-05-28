@@ -9,13 +9,13 @@ from functools import wraps
 from werkzeug.security import generate_password_hash, check_password_hash
 
 app = Flask(__name__)
-app.secret_key = os.urandom(24) # Secret key for flashing messages
+app.secret_key = "glitch_cor"
 
-# Paths to JSON files for data persistence
+
 POSTS_FILE = 'posts.json'
 USERS_FILE = 'users.json'
 
-# --- Helper Functions for Data Persistence ---
+
 def load_posts():
     """Loads blog posts from the JSON file."""
     if not os.path.exists(POSTS_FILE):
@@ -23,13 +23,13 @@ def load_posts():
     try:
         with open(POSTS_FILE, 'r', encoding='utf-8') as f:
             posts_data = json.load(f)
-            # Ensure each post has a 'tags' field (for backward compatibility)
+
             for post in posts_data:
                 if 'tags' not in post:
                     post['tags'] = []
             return posts_data
     except json.JSONDecodeError:
-        # Handle empty or corrupted JSON file
+
         return []
 
 def save_posts(posts):
@@ -52,11 +52,10 @@ def save_users(users):
     with open(USERS_FILE, 'w', encoding='utf-8') as f:
         json.dump(users, f, indent=4)
 
-# Load data on application startup
 posts = load_posts()
 users = load_users()
 
-# --- Authentication Decorator ---
+
 def login_required(f):
     """Decorator to restrict access to logged-in users."""
     @wraps(f)
@@ -67,7 +66,7 @@ def login_required(f):
         return f(*args, **kwargs)
     return decorated_function
 
-# --- Before Request Hook ---
+
 @app.before_request
 def load_logged_in_user():
     """Loads the user from session before each request."""
@@ -77,18 +76,17 @@ def load_logged_in_user():
     else:
         g.user = next((u for u in users if u['id'] == user_id), None)
 
-# --- Context Processor ---
-# This makes `current_year`, `all_tags`, and `g.user` available in all templates
+
 @app.context_processor
 def inject_global_data():
     all_tags = sorted(list(set(tag for post in posts for tag in post.get('tags', []))))
     return {
         'current_year': datetime.now().year,
         'all_tags': all_tags,
-        'user': g.user # Make the current user available in templates
+        'user': g.user 
     }
 
-# --- Routes ---
+
 
 @app.route('/')
 def index():
@@ -114,7 +112,7 @@ def index():
             if filter_tag in [t.lower() for t in p.get('tags', [])]
         ]
 
-    # Sort posts by timestamp in descending order (newest first)
+    
     sorted_posts = sorted(filtered_posts, key=lambda p: p['timestamp'], reverse=True)
     return render_template('index.html', posts=sorted_posts, search_query=search_query, filter_tag=filter_tag)
 
@@ -133,7 +131,7 @@ def view_post(post_id):
     return redirect(url_for('index'))
 
 @app.route('/create', methods=['GET', 'POST'])
-@login_required # Only logged-in users can create posts
+@login_required 
 def create_post():
     """
     Handles the creation of new blog posts.
@@ -160,7 +158,7 @@ def create_post():
             'timestamp': datetime.now().isoformat(),
             'image_url': image_url,
             'tags': tags,
-            'user_id': g.user['id'] # Associate post with the creator
+            'user_id': g.user['id'] 
         }
         posts.append(new_post)
         save_posts(posts)
@@ -169,7 +167,7 @@ def create_post():
     return render_template('create.html')
 
 @app.route('/edit/<string:post_id>', methods=['GET', 'POST'])
-@login_required # Only logged-in users can edit posts
+@login_required 
 def edit_post(post_id):
     """
     Handles the editing of existing blog posts.
@@ -181,7 +179,7 @@ def edit_post(post_id):
         flash('Post not found!', 'error')
         return redirect(url_for('index'))
 
-    # Ensure only the author can edit their post
+    
     if post.get('user_id') != g.user['id']:
         flash('You are not authorized to edit this post.', 'error')
         return redirect(url_for('view_post', post_id=post_id))
@@ -206,7 +204,7 @@ def edit_post(post_id):
     return render_template('edit.html', post=post)
 
 @app.route('/delete/<string:post_id>', methods=['POST'])
-@login_required # Only logged-in users can delete posts
+@login_required 
 def delete_post(post_id):
     """
     Handles the deletion of blog posts.
@@ -218,7 +216,7 @@ def delete_post(post_id):
         flash('Post not found!', 'error')
         return redirect(url_for('index'))
 
-    # Ensure only the author can delete their post
+    
     if post_to_delete.get('user_id') != g.user['id']:
         flash('You are not authorized to delete this post.', 'error')
         return redirect(url_for('view_post', post_id=post_id))
@@ -231,7 +229,7 @@ def delete_post(post_id):
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     """Handles user registration."""
-    if g.user: # If already logged in, redirect to index
+    if g.user: 
         return redirect(url_for('index'))
 
     if request.method == 'POST':
@@ -266,7 +264,7 @@ def register():
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     """Handles user login."""
-    if g.user: # If already logged in, redirect to index
+    if g.user: 
         return redirect(url_for('index'))
 
     if request.method == 'POST':

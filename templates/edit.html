@@ -57,7 +57,7 @@
 </section>
 
 <style>
-    /* Animation for the create/edit form (reused from create.html) */
+
     @keyframes fade-in-scale {
         0% { opacity: 0; transform: scale(0.95); }
         100% { opacity: 1; transform: scale(1); }
@@ -76,9 +76,9 @@
         const markdownContentDiv = markdownPreviewDiv.querySelector('.markdown-content');
 
         const md = window.markdownit({
-            html: true, // Enable HTML tags in source
-            linkify: true, // Autoconvert URL-like text to links
-            typographer: true // Enable some typographic replacements
+            html: true, 
+            linkify: true, 
+            typographer: true
         });
 
         previewButton.addEventListener('click', function() {

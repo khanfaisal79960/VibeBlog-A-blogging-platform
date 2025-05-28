@@ -61,7 +61,7 @@
 </div>
 
 <style>
-    /* Animations for post page */
+
     @keyframes fade-in-up {
         0% { opacity: 0; transform: translateY(20px); }
         100% { opacity: 1; transform: translateY(0); }
@@ -70,7 +70,7 @@
         animation: fade-in-up 0.8s ease-out forwards;
     }
     .animate-fade-in-delay {
-        animation: fade-in-up 1s ease-out forwards; /* Slightly delayed for content */
+        animation: fade-in-up 1s ease-out forwards; 
         animation-delay: 0.2s;
     }
     .animate-fade-in-up-buttons {
@@ -78,7 +78,6 @@
         animation-delay: 0.4s;
     }
 
-    /* Text reveal animation for title */
     @keyframes text-reveal {
         0% { opacity: 0; transform: translateY(20px); clip-path: inset(0 100% 0 0); }
         100% { opacity: 1; transform: translateY(0); clip-path: inset(0 0 0 0); }
@@ -87,7 +86,7 @@
         animation: text-reveal 1s ease-out forwards;
     }
 
-    /* Modal specific animation */
+    
     @keyframes scale-in {
         0% { transform: scale(0.8); opacity: 0; }
         100% { transform: scale(1); opacity: 1; }
@@ -114,12 +113,12 @@
         });
     }
 
-    // Intercept form submission to use our custom modal
+    
     document.querySelector('form[action*="delete"]').addEventListener('submit', function(event) {
-        event.preventDefault(); // Prevent default form submission
+        event.preventDefault(); 
         confirmDelete().then(result => {
             if (result) {
-                event.target.submit(); // If confirmed, submit the form programmatically
+                event.target.submit();
             }
         });
     });

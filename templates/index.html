@@ -14,7 +14,7 @@
             const taglineElement = document.getElementById('tagline');
             const text = "Share Your Story, Ignite Your Vibe.";
             let i = 0;
-            const speed = 70; // typing speed in milliseconds
+            const speed = 70; 
 
             function typeWriter() {
                 if (i < text.length) {
@@ -115,7 +115,7 @@
 </section>
 
 <style>
-    /* Custom animation for the "Latest Vibes" heading */
+
     @keyframes pulse-light {
         0%, 100% { filter: brightness(1); }
         50% { filter: brightness(1.5); }
@@ -124,7 +124,7 @@
         animation: pulse-light 3s infinite ease-in-out;
     }
 
-    /* Card specific animation */
+
     .post-card {
         transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
         will-change: transform, box-shadow;
@@ -134,7 +134,7 @@
         box-shadow: 0 15px 30px rgba(139, 92, 246, 0.4);
     }
 
-    /* Fade in for search/tag section */
+
     @keyframes fade-in-up {
         0% { opacity: 0; transform: translateY(20px); }
         100% { opacity: 1; transform: translateY(0); }
@@ -143,13 +143,12 @@
         animation: fade-in-up 0.8s ease-out forwards;
     }
 
-    /* Typing animation for tagline */
     @keyframes typing {
         from { width: 0 }
         to { width: 100% }
     }
 
-    /* Blinking cursor for tagline */
+
     @keyframes blink-caret {
         from, to { border-color: transparent }
         50% { border-color: #a0a0a0; }

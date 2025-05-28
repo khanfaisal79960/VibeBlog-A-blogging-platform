@@ -57,7 +57,6 @@
 </section>
 
 <style>
-    /* Animation for the create/edit form */
     @keyframes fade-in-scale {
         0% { opacity: 0; transform: scale(0.95); }
         100% { opacity: 1; transform: scale(1); }
@@ -76,15 +75,15 @@
         const markdownContentDiv = markdownPreviewDiv.querySelector('.markdown-content');
 
         const md = window.markdownit({
-            html: true, // Enable HTML tags in source
-            linkify: true, // Autoconvert URL-like text to links
-            typographer: true // Enable some typographic replacements
+            html: true, 
+            linkify: true, 
+            typographer: true 
         });
 
         previewButton.addEventListener('click', function() {
             const markdownText = contentTextarea.value;
             markdownContentDiv.innerHTML = md.render(markdownText);
-            markdownPreviewDiv.classList.toggle('hidden'); // Toggle visibility
+            markdownPreviewDiv.classList.toggle('hidden'); 
         });
     });
 </script>

@@ -20,7 +20,7 @@
             overflow-x: hidden;
         }
 
-        /* Subtle animated background blobs */
+      
         body::before {
             content: '';
             position: absolute;
@@ -49,7 +49,7 @@
             padding: 1.5rem;
             flex-grow: 1;
         }
-        /* Custom scrollbar for a vibrant feel */
+        
         ::-webkit-scrollbar {
             width: 10px;
         }
@@ -65,7 +65,7 @@
         ::-webkit-scrollbar-thumb:hover {
             background: #9b59b6;
         }
-        /* Flash messages styling */
+    
         .flash-message {
             padding: 1rem;
             margin-bottom: 1rem;
@@ -83,11 +83,11 @@
             color: #ffffff;
         }
         .flash-message.info {
-            background-color: #3498db; /* Peter River blue */
+            background-color: #3498db; 
             color: #ffffff;
         }
 
-        /* Keyframe animation for flash messages */
+
         @keyframes fadeInOut {
             0% { opacity: 0; transform: translateY(-20px); }
             10% { opacity: 1; transform: translateY(0); }
@@ -95,7 +95,7 @@
             100% { opacity: 0; transform: translateY(-20px); }
         }
 
-        /* Button base styles with vibrant touch and animation */
+ 
         .btn-primary, .btn-secondary, .btn-danger {
             @apply font-bold py-2 px-4 rounded-lg shadow-lg transition-all duration-300 ease-in-out;
             border: none;
@@ -122,7 +122,7 @@
             @apply from-red-700 to-orange-700 transform scale-105 shadow-xl;
         }
 
-        /* Ripple effect for all buttons */
+
         .btn-primary::before, .btn-secondary::before, .btn-danger::before {
             content: '';
             position: absolute;
@@ -141,7 +141,7 @@
             height: 200%;
         }
 
-        /* Form input styling */
+       
         .form-input {
             @apply bg-gray-700 border border-gray-600 text-white p-3 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 ease-in-out;
             box-shadow: inset 0 1px 3px rgba(0,0,0,0.3);
@@ -151,14 +151,14 @@
             box-shadow: inset 0 1px 3px rgba(0,0,0,0.3);
         }
 
-        /* Enhanced Markdown specific styling for readability */
+ 
         .markdown-content {
-            line-height: 1.75; /* Improved readability */
-            color: #d0d0d0; /* Slightly lighter text for content */
+            line-height: 1.75;
+            color: #d0d0d0; 
         }
         .markdown-content h1, .markdown-content h2, .markdown-content h3, .markdown-content h4, .markdown-content h5, .markdown-content h6 {
             @apply text-purple-400 font-bold mb-4 mt-6;
-            text-shadow: 0 2px 5px rgba(0,0,0,0.4); /* Subtle text shadow */
+            text-shadow: 0 2px 5px rgba(0,0,0,0.4); 
         }
         .markdown-content h1 { @apply text-4xl border-b border-purple-600 pb-2; }
         .markdown-content h2 { @apply text-3xl border-b border-indigo-600 pb-1; }
@@ -171,11 +171,11 @@
         }
         .markdown-content ul, .markdown-content ol {
             @apply list-inside mb-4 pl-5;
-            padding-left: 1.5rem; /* Ensure consistent indentation */
+            padding-left: 1.5rem; 
         }
         .markdown-content ul {
             @apply list-disc;
-            color: #a0a0a0; /* Lighter color for list items */
+            color: #a0a0a0; 
         }
         .markdown-content ol {
             @apply list-decimal;
@@ -186,12 +186,12 @@
         }
         .markdown-content blockquote {
             @apply border-l-4 border-purple-500 pl-4 py-2 my-4 bg-gray-800 italic text-gray-300;
-            box-shadow: 2px 2px 8px rgba(0,0,0,0.5); /* Shadow for blockquotes */
-            border-radius: 0 8px 8px 0; /* Rounded right edge */
+            box-shadow: 2px 2px 8px rgba(0,0,0,0.5); 
+            border-radius: 0 8px 8px 0; 
         }
         .markdown-content code {
             @apply bg-gray-800 text-pink-400 px-1.5 py-0.5 rounded text-sm;
-            font-family: 'Fira Code', monospace; /* Monospace font for code */
+            font-family: 'Fira Code', monospace; 
             box-shadow: inset 0 0 3px rgba(0,0,0,0.3);
         }
         .markdown-content pre {
@@ -206,7 +206,7 @@
             @apply w-full border-collapse my-4;
             box-shadow: 0 4px 10px rgba(0,0,0,0.5);
             border-radius: 8px;
-            overflow: hidden; /* Ensures rounded corners on table */
+            overflow: hidden; 
         }
         .markdown-content th, .markdown-content td {
             @apply border border-gray-700 p-3 text-left;
@@ -214,12 +214,12 @@
         .markdown-content th {
             @apply bg-gray-700 text-purple-300 font-semibold;
         }
-        .markdown-content tr:nth-child(even) { /* Zebra striping */
+        .markdown-content tr:nth-child(even) { 
             background-color: #2a2a3a;
         }
         .markdown-content img {
             @apply max-w-full h-auto rounded-lg my-4;
-            box-shadow: 0 8px 15px rgba(0,0,0,0.6); /* More prominent shadow for images */
+            box-shadow: 0 8px 15px rgba(0,0,0,0.6); 
             transition: transform 0.3s ease-out;
         }
         .markdown-content img:hover {
@@ -227,7 +227,7 @@
         }
 
 
-        /* General page entrance animation */
+        
         .page-enter-animation {
             animation: fadeInScaleUp 0.6s ease-out forwards;
         }
@@ -236,11 +236,11 @@
             100% { opacity: 1; transform: translateY(0) scale(1); }
         }
 
-        /* Navigation active link animation */
+        
         .nav-link {
             position: relative;
             display: inline-block;
-            padding-bottom: 5px; /* Space for underline */
+            padding-bottom: 5px;
             transition: color 0.3s ease-in-out;
         }
         .nav-link::after {
@@ -250,14 +250,14 @@
             bottom: 0;
             width: 0;
             height: 3px;
-            background: linear-gradient(90deg, #8b5cf6, #ec4899); /* Vibrant gradient underline */
+            background: linear-gradient(90deg, #8b5cf6, #ec4899); 
             transition: width 0.3s ease-in-out;
         }
         .nav-link:hover::after, .nav-link.active::after {
             width: 100%;
         }
         .nav-link.active {
-            color: #a78bfa; /* Highlight active link text */
+            color: #a78bfa; 
         }
     </style>
 </head>
