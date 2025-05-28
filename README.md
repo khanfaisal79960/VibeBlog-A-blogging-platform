@@ -7,7 +7,7 @@
 ## 🚀 Live Demo
 
 Experience VibeBlog live:  
-👉 [VibeBlog Live Demo](#) *(Replace this with your deployment link)*
+👉 [VibeBlog Live Demo](#) *(vibe-blog-three.vercel.app)*
 
 ---
 
@@ -60,20 +60,10 @@ Experience VibeBlog live:
 
 *(Replace the placeholders below with actual images)*
 
-- **Homepage**  
-  ![Homepage](#)
+![Alt Text](./assets/screenshot_1.png)
+![Alt Text](./assets/screenshot_2.png)
+![Alt Text](./assets/screenshot_3.png)
 
-- **Single Post View**  
-  ![Single Post View](#)
-
-- **Login Page**  
-  ![Login Page](#)
-
-- **Create New Post**  
-  ![Create New Post](#)
-
-- **Mobile View**  
-  ![Responsive Design](#)
 
 ---
 
