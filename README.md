@@ -56,14 +56,46 @@ Experience VibeBlog live:
 
 ---
 
+## 📁 Project Structure
+
+```
+VibeBlog/
+├── app.py
+├── requirements.txt
+├── posts.json
+├── users.json
+├── vercel.json
+├── assets/
+│   ├── screenshot_1.png
+│   ├── screenshot_2.png
+│   └── screenshot_3.png
+├── static/
+│   ├── css/
+│   │   └── style.css
+│   └── js/
+│       └── script.js
+└── templates/
+    ├── base.html
+    ├── index.html
+    ├── login.html
+    ├── signup.html
+    ├── create_post.html
+    ├── edit_post.html
+    └── view_post.html
+```
+
+---
+
 ## 📸 Screenshots
 
-*(Replace the placeholders below with actual images)*
+![Homepage](./assets/screenshot_1.png)  
+*Homepage showcasing recent posts.*
 
-![Alt Text](./assets/screenshot_1.png)
-![Alt Text](./assets/screenshot_2.png)
-![Alt Text](./assets/screenshot_3.png)
+![Post View](./assets/screenshot_2.png)  
+*Detailed view of a single post with markdown formatting.*
 
+![Create Post](./assets/screenshot_3.png)  
+*Interface for creating a new blog post.*
 
 ---
 
@@ -73,40 +105,40 @@ To run VibeBlog on your local machine:
 
 1. **Clone the repository**
 
-```bash
-git clone https://github.com/khanfaisal79960/VibeBlog.git
-cd VibeBlog
-```
+   ```bash
+   git clone https://github.com/khanfaisal79960/VibeBlog.git
+   cd VibeBlog
+   ```
 
 2. **Create and activate a virtual environment**
 
-```bash
-# Windows
-python -m venv venv
-.env\Scriptsctivate
+   ```bash
+   # Windows
+   python -m venv venv
+   .\venv\Scripts\activate
 
-# macOS/Linux
-python3 -m venv venv
-source venv/bin/activate
-```
+   # macOS/Linux
+   python3 -m venv venv
+   source venv/bin/activate
+   ```
 
 3. **Install the dependencies**
 
-```bash
-pip install -r requirements.txt
-```
+   ```bash
+   pip install -r requirements.txt
+   ```
 
 4. **Run the application**
 
-```bash
-python app.py
-```
+   ```bash
+   python app.py
+   ```
 
 5. **Visit in browser**
 
-```
-http://127.0.0.1:5000/
-```
+   ```
+   http://127.0.0.1:5000/
+   ```
 
 ---
 
