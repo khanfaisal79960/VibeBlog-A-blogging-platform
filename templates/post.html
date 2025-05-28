@@ -1,0 +1,127 @@
+{% extends "base.html" %}
+
+{% block title %}{{ post.title }}{% endblock %}
+
+{% block content %}
+<section class="my-8 bg-gray-800 rounded-xl shadow-2xl p-8 md:p-12 animate-fade-in-up">
+    <img src="{{ post.image_url }}" alt="{{ post.title }}" class="w-full h-64 md:h-96 object-cover rounded-lg mb-8 shadow-lg transform transition-transform duration-500 hover:scale-102">
+
+    <h1 class="text-5xl md:text-6xl font-extrabold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-500 animate-text-reveal">
+        {{ post.title }}
+    </h1>
+    <p class="text-gray-400 text-lg mb-8 border-b border-gray-700 pb-4">
+        By <span class="font-semibold text-blue-400">{{ post.author }}</span> on <span id="post-detail-date">{{ post.timestamp }}</span>
+    </p>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const dateElement = document.getElementById('post-detail-date');
+            if (dateElement) {
+                dateElement.textContent = moment(dateElement.textContent).format('MMMM D,YYYY [at] h:mm A');
+            }
+        });
+    </script>
+
+    {% if post.tags %}
+    <div class="flex flex-wrap gap-2 mb-6 animate-fade-in-delay">
+        {% for tag in post.tags %}
+            <a href="{{ url_for('index', tag=tag) }}" class="px-4 py-1 bg-blue-700 text-white text-sm font-semibold rounded-full shadow-md hover:bg-blue-600 transition-colors duration-200">#{{ tag }}</a>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <div class="markdown-content text-gray-200 leading-relaxed text-lg animate-fade-in-delay">
+        {{ post_content_html | safe }} {# Render the HTML content safely #}
+    </div>
+
+    <div class="mt-10 flex flex-col md:flex-row gap-4 animate-fade-in-up-buttons">
+        {% if user and post.user_id == user.id %} {# Only show edit/delete if logged in and is author #}
+            <a href="{{ url_for('edit_post', post_id=post.id) }}" class="btn-secondary flex-grow text-center">
+                <i class="fas fa-edit mr-2"></i> Edit Post
+            </a>
+            <form action="{{ url_for('delete_post', post_id=post.id) }}" method="POST" onsubmit="return confirmDelete()">
+                <button type="submit" class="btn-danger w-full text-center">
+                    <i class="fas fa-trash-alt mr-2"></i> Delete Post
+                </button>
+            </form>
+        {% endif %}
+        <a href="{{ url_for('index') }}" class="btn-primary flex-grow text-center">
+            <i class="fas fa-arrow-left mr-2"></i> Back to Home
+        </a>
+    </div>
+</section>
+
+<div id="confirmModal" class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 hidden">
+    <div class="bg-gray-900 p-8 rounded-xl shadow-2xl max-w-md w-full text-center border-2 border-purple-600 animate-scale-in">
+        <p class="text-2xl font-bold text-white mb-6">Are you sure you want to delete this post?</p>
+        <div class="flex justify-center gap-4">
+            <button id="confirmYes" class="btn-danger px-6 py-3">Yes, Delete</button>
+            <button id="confirmNo" class="btn-primary px-6 py-3">No, Cancel</button>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* Animations for post page */
+    @keyframes fade-in-up {
+        0% { opacity: 0; transform: translateY(20px); }
+        100% { opacity: 1; transform: translateY(0); }
+    }
+    .animate-fade-in-up {
+        animation: fade-in-up 0.8s ease-out forwards;
+    }
+    .animate-fade-in-delay {
+        animation: fade-in-up 1s ease-out forwards; /* Slightly delayed for content */
+        animation-delay: 0.2s;
+    }
+    .animate-fade-in-up-buttons {
+        animation: fade-in-up 0.8s ease-out forwards;
+        animation-delay: 0.4s;
+    }
+
+    /* Text reveal animation for title */
+    @keyframes text-reveal {
+        0% { opacity: 0; transform: translateY(20px); clip-path: inset(0 100% 0 0); }
+        100% { opacity: 1; transform: translateY(0); clip-path: inset(0 0 0 0); }
+    }
+    .animate-text-reveal {
+        animation: text-reveal 1s ease-out forwards;
+    }
+
+    /* Modal specific animation */
+    @keyframes scale-in {
+        0% { transform: scale(0.8); opacity: 0; }
+        100% { transform: scale(1); opacity: 1; }
+    }
+    .animate-scale-in {
+        animation: scale-in 0.3s ease-out forwards;
+    }
+</style>
+
+<script>
+    function confirmDelete() {
+        const modal = document.getElementById('confirmModal');
+        modal.classList.remove('hidden');
+
+        return new Promise((resolve) => {
+            document.getElementById('confirmYes').onclick = () => {
+                modal.classList.add('hidden');
+                resolve(true); // Proceed with form submission
+            };
+            document.getElementById('confirmNo').onclick = () => {
+                modal.classList.add('hidden');
+                resolve(false); // Cancel form submission
+            };
+        });
+    }
+
+    // Intercept form submission to use our custom modal
+    document.querySelector('form[action*="delete"]').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent default form submission
+        confirmDelete().then(result => {
+            if (result) {
+                event.target.submit(); // If confirmed, submit the form programmatically
+            }
+        });
+    });
+</script>
+{% endblock %}

@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+
+{% block title %}Contact Me{% endblock %}
+
+{% block content %}
+<section class="my-8 bg-gray-800 rounded-xl shadow-2xl p-8 md:p-12 animate-fade-in-up">
+    <h1 class="text-5xl font-extrabold text-center mb-10 text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-pink-400 animate-text-reveal">
+        Get in Touch
+    </h1>
+    <p class="text-lg text-gray-300 mb-6 leading-relaxed animate-fade-in-delay">
+        Have questions, feedback, or just want to say hello? I'd love to hear from you! Reach out to me through the following channels:
+    </p>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+        <div class="bg-gray-900 p-6 rounded-lg shadow-lg border border-blue-700 animate-fade-in-delay" style="animation-delay: 0.2s;">
+            <h2 class="text-3xl font-bold text-blue-400 mb-4"><i class="fas fa-envelope mr-3"></i> Email</h2>
+            <p class="text-gray-300 text-lg">For inquiries, please email me at:</p>
+            <p class="text-xl font-semibold text-blue-300 mt-2">
+                <a href="mailto:khanfaisal79960@gmail.com" class="hover:underline">khanfaisal79960@gmail.com</a>
+            </p>
+        </div>
+
+        <div class="bg-gray-900 p-6 rounded-lg shadow-lg border border-purple-700 animate-fade-in-delay" style="animation-delay: 0.4s;">
+            <h2 class="text-3xl font-bold text-purple-400 mb-4"><i class="fas fa-share-alt mr-3"></i> Connect Online</h2>
+            <p class="text-gray-300 text-lg">Find me on these platforms:</p>
+            <div class="flex flex-wrap gap-4 mt-4 justify-center md:justify-start">
+                <a href="https://khanfaisal.netlify.app" target="_blank" rel="noopener noreferrer" class="text-blue-500 hover:text-blue-400 text-4xl transition-colors duration-200" title="Portfolio">
+                    <i class="fas fa-globe"></i>
+                </a>
+                <a href="https://github.com/khanfaisal79960" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-gray-300 text-4xl transition-colors duration-200" title="GitHub">
+                    <i class="fab fa-github-square"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/khanfaisal79960" target="_blank" rel="noopener noreferrer" class="text-blue-700 hover:text-blue-600 text-4xl transition-colors duration-200" title="LinkedIn">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="https://medium.com/@khanfaisal79960" target="_blank" rel="noopener noreferrer" class="text-green-500 hover:text-green-400 text-4xl transition-colors duration-200" title="Medium">
+                    <i class="fab fa-medium"></i>
+                </a>
+                <a href="https://instagram.com/mr._perfect_1004" target="_blank" rel="noopener noreferrer" class="text-pink-500 hover:text-pink-400 text-4xl transition-colors duration-200" title="Instagram">
+                    <i class="fab fa-instagram-square"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="mt-8 text-center animate-fade-in-up-buttons">
+        <a href="{{ url_for('index') }}" class="btn-primary px-6 py-3 text-lg">
+            <i class="fas fa-home mr-2"></i> Back to Home
+        </a>
+    </div>
+</section>
+
+<style>
+    /* Reusing animations from other templates for consistency */
+    @keyframes fade-in-up {
+        0% { opacity: 0; transform: translateY(20px); }
+        100% { opacity: 1; transform: translateY(0); }
+    }
+    .animate-fade-in-up {
+        animation: fade-in-up 0.8s ease-out forwards;
+    }
+    .animate-fade-in-delay {
+        animation: fade-in-up 1s ease-out forwards;
+    }
+    .animate-fade-in-up-buttons {
+        animation: fade-in-up 0.8s ease-out forwards;
+        animation-delay: 0.6s;
+    }
+    @keyframes text-reveal {
+        0% { opacity: 0; transform: translateY(20px); clip-path: inset(0 100% 0 0); }
+        100% { transform: translateY(0); clip-path: inset(0 0 0 0); }
+    }
+    .animate-text-reveal {
+        animation: text-reveal 1s ease-out forwards;
+    }
+</style>
+{% endblock %}

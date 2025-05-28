@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block title %}About VibeBlog{% endblock %}
+
+{% block content %}
+<section class="my-8 bg-gray-800 rounded-xl shadow-2xl p-8 md:p-12 animate-fade-in-up">
+    <h1 class="text-5xl font-extrabold text-center mb-10 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-cyan-400 animate-text-reveal">
+        About VibeBlog
+    </h1>
+    <p class="text-lg text-gray-300 mb-6 leading-relaxed animate-fade-in-delay">
+        VibeBlog is a dynamic and visually captivating blogging platform designed to help you share your stories, insights, and creativity with the world. Our mission is to provide a modern, minimal, and vibrant space where your content can truly shine.
+    </p>
+    <p class="text-lg text-gray-300 mb-6 leading-relaxed animate-fade-in-delay" style="animation-delay: 0.2s;">
+        Built with Flask and powered by Markdown, VibeBlog offers a seamless writing experience. Whether you're a seasoned blogger or just starting, our platform makes it easy to create beautiful, formatted posts. We believe in the power of expression, and VibeBlog is here to amplify your voice.
+    </p>
+    <p class="text-lg text-gray-300 mb-6 leading-relaxed animate-fade-in-delay" style="animation-delay: 0.4s;">
+        We've focused on a design that avoids stark white, embracing a palette of rich, vibrant colors and subtle animations to create an engaging user experience. Every element is crafted to be responsive, ensuring your blog looks fantastic on any device.
+    </p>
+    <div class="mt-8 text-center animate-fade-in-up-buttons">
+        <a href="{{ url_for('index') }}" class="btn-primary px-6 py-3 text-lg">
+            <i class="fas fa-home mr-2"></i> Go to Home
+        </a>
+    </div>
+</section>
+
+<style>
+    /* Reusing animations from other templates for consistency */
+    @keyframes fade-in-up {
+        0% { opacity: 0; transform: translateY(20px); }
+        100% { opacity: 1; transform: translateY(0); }
+    }
+    .animate-fade-in-up {
+        animation: fade-in-up 0.8s ease-out forwards;
+    }
+    .animate-fade-in-delay {
+        animation: fade-in-up 1s ease-out forwards;
+    }
+    .animate-fade-in-up-buttons {
+        animation: fade-in-up 0.8s ease-out forwards;
+        animation-delay: 0.6s;
+    }
+    @keyframes text-reveal {
+        0% { opacity: 0; transform: translateY(20px); clip-path: inset(0 100% 0 0); }
+        100% { opacity: 1; transform: translateY(0); clip-path: inset(0 0 0 0); }
+    }
+    .animate-text-reveal {
+        animation: text-reveal 1s ease-out forwards;
+    }
+</style>
+{% endblock %}

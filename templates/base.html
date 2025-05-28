@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VibeBlog - {% block title %}{% endblock %}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="icon" href="https://img.icons8.com/color/48/google-blog-search.png" type="image/png">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
+            min-height: 100vh;
+            color: #e0e0e0;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Subtle animated background blobs */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 10% 20%, rgba(139, 92, 246, 0.15) 0%, transparent 50%),
+                        radial-gradient(circle at 90% 80%, rgba(236, 72, 153, 0.15) 0%, transparent 50%),
+                        radial-gradient(circle at 40% 60%, rgba(59, 130, 246, 0.1) 0%, transparent 50%); /* New blob */
+            animation: background-shift 20s infinite alternate ease-in-out;
+            z-index: -1;
+        }
+
+        @keyframes background-shift {
+            0% { background-position: 0% 0%, 100% 100%, 50% 50%; }
+            25% { background-position: 20% 80%, 80% 20%, 70% 30%; }
+            50% { background-position: 50% 0%, 0% 100%, 20% 70%; }
+            75% { background-position: 80% 20%, 20% 80%, 30% 70%; }
+            100% { background-position: 0% 0%, 100% 100%, 50% 50%; }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1.5rem;
+            flex-grow: 1;
+        }
+        /* Custom scrollbar for a vibrant feel */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #2c3e50;
+            border-radius: 5px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #8e44ad;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #9b59b6;
+        }
+        /* Flash messages styling */
+        .flash-message {
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            animation: fadeInOut 4s forwards;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+        .flash-message.success {
+            background-color: #27ae60;
+            color: #ffffff;
+        }
+        .flash-message.error {
+            background-color: #e74c3c;
+            color: #ffffff;
+        }
+        .flash-message.info {
+            background-color: #3498db; /* Peter River blue */
+            color: #ffffff;
+        }
+
+        /* Keyframe animation for flash messages */
+        @keyframes fadeInOut {
+            0% { opacity: 0; transform: translateY(-20px); }
+            10% { opacity: 1; transform: translateY(0); }
+            90% { opacity: 1; transform: translateY(0); }
+            100% { opacity: 0; transform: translateY(-20px); }
+        }
+
+        /* Button base styles with vibrant touch and animation */
+        .btn-primary, .btn-secondary, .btn-danger {
+            @apply font-bold py-2 px-4 rounded-lg shadow-lg transition-all duration-300 ease-in-out;
+            border: none;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        .btn-primary {
+            @apply bg-gradient-to-r from-purple-600 to-indigo-600 text-white;
+        }
+        .btn-primary:hover {
+            @apply from-purple-700 to-indigo-700 transform scale-105 shadow-xl;
+        }
+        .btn-secondary {
+            @apply bg-gradient-to-r from-pink-500 to-red-500 text-white;
+        }
+        .btn-secondary:hover {
+            @apply from-pink-600 to-red-600 transform scale-105 shadow-xl;
+        }
+        .btn-danger {
+            @apply bg-gradient-to-r from-red-600 to-orange-600 text-white;
+        }
+        .btn-danger:hover {
+            @apply from-red-700 to-orange-700 transform scale-105 shadow-xl;
+        }
+
+        /* Ripple effect for all buttons */
+        .btn-primary::before, .btn-secondary::before, .btn-danger::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.4s ease-out, height 0.4s ease-out;
+            z-index: -1;
+        }
+        .btn-primary:active::before, .btn-secondary:active::before, .btn-danger:active::before {
+            width: 200%;
+            height: 200%;
+        }
+
+        /* Form input styling */
+        .form-input {
+            @apply bg-gray-700 border border-gray-600 text-white p-3 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 ease-in-out;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.3);
+        }
+        .form-textarea {
+            @apply bg-gray-700 border border-gray-600 text-white p-3 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 ease-in-out resize-y;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.3);
+        }
+
+        /* Enhanced Markdown specific styling for readability */
+        .markdown-content {
+            line-height: 1.75; /* Improved readability */
+            color: #d0d0d0; /* Slightly lighter text for content */
+        }
+        .markdown-content h1, .markdown-content h2, .markdown-content h3, .markdown-content h4, .markdown-content h5, .markdown-content h6 {
+            @apply text-purple-400 font-bold mb-4 mt-6;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.4); /* Subtle text shadow */
+        }
+        .markdown-content h1 { @apply text-4xl border-b border-purple-600 pb-2; }
+        .markdown-content h2 { @apply text-3xl border-b border-indigo-600 pb-1; }
+        .markdown-content h3 { @apply text-2xl; }
+        .markdown-content p {
+            @apply mb-4 leading-relaxed;
+        }
+        .markdown-content a {
+            @apply text-blue-400 hover:text-blue-300 transition-colors duration-200 underline;
+        }
+        .markdown-content ul, .markdown-content ol {
+            @apply list-inside mb-4 pl-5;
+            padding-left: 1.5rem; /* Ensure consistent indentation */
+        }
+        .markdown-content ul {
+            @apply list-disc;
+            color: #a0a0a0; /* Lighter color for list items */
+        }
+        .markdown-content ol {
+            @apply list-decimal;
+            color: #a0a0a0;
+        }
+        .markdown-content li {
+            @apply mb-2;
+        }
+        .markdown-content blockquote {
+            @apply border-l-4 border-purple-500 pl-4 py-2 my-4 bg-gray-800 italic text-gray-300;
+            box-shadow: 2px 2px 8px rgba(0,0,0,0.5); /* Shadow for blockquotes */
+            border-radius: 0 8px 8px 0; /* Rounded right edge */
+        }
+        .markdown-content code {
+            @apply bg-gray-800 text-pink-400 px-1.5 py-0.5 rounded text-sm;
+            font-family: 'Fira Code', monospace; /* Monospace font for code */
+            box-shadow: inset 0 0 3px rgba(0,0,0,0.3);
+        }
+        .markdown-content pre {
+            @apply bg-gray-900 p-4 rounded-lg overflow-x-auto my-4;
+            border: 1px solid #333;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+        }
+        .markdown-content pre code {
+            @apply block bg-transparent p-0 text-green-400;
+        }
+        .markdown-content table {
+            @apply w-full border-collapse my-4;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+            border-radius: 8px;
+            overflow: hidden; /* Ensures rounded corners on table */
+        }
+        .markdown-content th, .markdown-content td {
+            @apply border border-gray-700 p-3 text-left;
+        }
+        .markdown-content th {
+            @apply bg-gray-700 text-purple-300 font-semibold;
+        }
+        .markdown-content tr:nth-child(even) { /* Zebra striping */
+            background-color: #2a2a3a;
+        }
+        .markdown-content img {
+            @apply max-w-full h-auto rounded-lg my-4;
+            box-shadow: 0 8px 15px rgba(0,0,0,0.6); /* More prominent shadow for images */
+            transition: transform 0.3s ease-out;
+        }
+        .markdown-content img:hover {
+            transform: scale(1.01);
+        }
+
+
+        /* General page entrance animation */
+        .page-enter-animation {
+            animation: fadeInScaleUp 0.6s ease-out forwards;
+        }
+        @keyframes fadeInScaleUp {
+            0% { opacity: 0; transform: translateY(20px) scale(0.98); }
+            100% { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        /* Navigation active link animation */
+        .nav-link {
+            position: relative;
+            display: inline-block;
+            padding-bottom: 5px; /* Space for underline */
+            transition: color 0.3s ease-in-out;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #8b5cf6, #ec4899); /* Vibrant gradient underline */
+            transition: width 0.3s ease-in-out;
+        }
+        .nav-link:hover::after, .nav-link.active::after {
+            width: 100%;
+        }
+        .nav-link.active {
+            color: #a78bfa; /* Highlight active link text */
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen">
+    <header class="bg-gray-900 py-6 shadow-xl relative z-10">
+        <div class="container flex flex-col md:flex-row justify-between items-center">
+            <a href="{{ url_for('index') }}" class="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-500 hover:from-purple-500 hover:to-pink-600 transition-all duration-300 ease-in-out transform hover:scale-105 mb-4 md:mb-0">
+                VibeBlog
+            </a>
+            <nav class="flex flex-wrap justify-center gap-4">
+                <a href="{{ url_for('index') }}" class="nav-link {% if request.endpoint == 'index' %}active{% endif %} btn-primary">
+                    <i class="fas fa-home mr-2"></i> Home
+                </a>
+                <a href="{{ url_for('about') }}" class="nav-link {% if request.endpoint == 'about' %}active{% endif %} btn-primary">
+                    <i class="fas fa-info-circle mr-2"></i> About
+                </a>
+                <a href="{{ url_for('contact') }}" class="nav-link {% if request.endpoint == 'contact' %}active{% endif %} btn-primary">
+                    <i class="fas fa-envelope mr-2"></i> Contact
+                </a>
+                {% if user %}
+                    <a href="{{ url_for('create_post') }}" class="nav-link {% if request.endpoint == 'create_post' %}active{% endif %} btn-secondary">
+                        <i class="fas fa-plus-circle mr-2"></i> Create Post
+                    </a>
+                    <a href="{{ url_for('logout') }}" class="nav-link btn-danger">
+                        <i class="fas fa-sign-out-alt mr-2"></i> Logout ({{ user.username }})
+                    </a>
+                {% else %}
+                    <a href="{{ url_for('login') }}" class="nav-link {% if request.endpoint == 'login' %}active{% endif %} btn-primary">
+                        <i class="fas fa-sign-in-alt mr-2"></i> Login
+                    </a>
+                    <a href="{{ url_for('register') }}" class="nav-link {% if request.endpoint == 'register' %}active{% endif %} btn-secondary">
+                        <i class="fas fa-user-plus mr-2"></i> Sign Up
+                    </a>
+                {% endif %}
+            </nav>
+        </div>
+    </header>
+
+    <main class="container flex-grow page-enter-animation">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div class="mt-4">
+                    {% for category, message in messages %}
+                        <div class="flash-message {{ category }}">{{ message }}</div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="bg-gray-900 py-8 mt-12 shadow-inner border-t border-gray-700">
+        <div class="container text-center text-gray-500">
+            <p class="mb-4 text-lg text-gray-400">
+                &copy; {{ current_year }} VibeBlog. All rights reserved.
+            </p>
+            <div class="flex justify-center space-x-6 mb-4">
+                <a href="https://khanfaisal.netlify.app" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-blue-400 transition-colors duration-200 text-3xl" title="Portfolio">
+                    <i class="fas fa-globe"></i>
+                </a>
+                <a href="https://github.com/khanfaisal79960" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-gray-300 transition-colors duration-200 text-3xl" title="GitHub">
+                    <i class="fab fa-github-square"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/khanfaisal79960" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-blue-700 transition-colors duration-200 text-3xl" title="LinkedIn">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="https://medium.com/@khanfaisal79960" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-green-500 transition-colors duration-200 text-3xl" title="Medium">
+                    <i class="fab fa-medium"></i>
+                </a>
+                <a href="https://instagram.com/mr._perfect_1004" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-pink-500 transition-colors duration-200 text-3xl" title="Instagram">
+                    <i class="fab fa-instagram-square"></i>
+                </a>
+            </div>
+            <p class="text-sm text-gray-600">
+                Designed with <i class="fas fa-heart text-red-500 animate-pulse"></i> by Khan Faisal
+            </p>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+/* static/style.css */
+
+/*
+    This file is primarily for custom CSS animations or overrides
+    that are not easily handled by Tailwind CSS classes.
+    Most styling is handled directly within the HTML templates using Tailwind.
+*/
+
+/* Ensure body and html take full height for proper flexbox layout */
+html, body {
+    height: 100%;
+}
+
+/* Ensure the main container grows to push the footer down */
+main {
+    flex-grow: 1;
+}
+
+/* Additional responsive adjustments if needed beyond Tailwind's utility classes */
+@media (max-width: 768px) {
+    /* Example: Adjust padding on smaller screens */
+    .container {
+        padding: 1rem;
+    }
+    .text-5xl {
+        font-size: 3rem; /* Smaller heading on mobile */
+    }
+    .text-4xl {
+        font-size: 2rem; /* Smaller heading on mobile */
+    }
+}
