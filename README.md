@@ -60,9 +60,9 @@ Experience VibeBlog live:
 
 *(Replace the placeholders below with actual images)*
 
-[!Alt Text](../assets/screenshot_1.png)
-[!Alt Text](../assets/screenshot_2.png)
-[!Alt Text](../assets/screenshot_3.png)
+![Alt Text](../assets/screenshot_1.png)
+![Alt Text](../assets/screenshot_2.png)
+![Alt Text](../assets/screenshot_3.png)
 
 ---
 
