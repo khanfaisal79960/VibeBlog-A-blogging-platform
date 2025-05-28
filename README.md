@@ -58,23 +58,10 @@ Experience VibeBlog live:
 
 ## 📸 Screenshots
 
-*(Replace the placeholders below with actual images)*
-
-- **Homepage**  
-  ![Homepage](#)
-
-- **Single Post View**  
-  ![Single Post View](#)
-
-- **Login Page**  
-  ![Login Page](#)
-
-- **Create New Post**  
-  ![Create New Post](#)
-
-- **Mobile View**  
-  ![Responsive Design](#)
-
+ [Alt Text](./assets/screenshot_1.png)
+ [Alt Text](./assets/screenshot_2.png)
+ [Alt Text](./assets/screenshot_3.png)
+ 
 ---
 
 ## 🧪 Installation & Setup
