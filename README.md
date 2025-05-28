@@ -131,5 +131,3 @@ Let’s connect:
 - **🔗 LinkedIn:** [@khanfaisal79960](https://www.linkedin.com/in/khanfaisal79960)
 - **📝 Medium:** [@khanfaisal79960](https://medium.com/@khanfaisal79960)
 - **📷 Instagram:** [@mr._perfect_1004](https://instagram.com/mr._perfect_1004)
-
----
