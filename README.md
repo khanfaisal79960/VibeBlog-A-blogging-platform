@@ -58,10 +58,12 @@ Experience VibeBlog live:
 
 ## 📸 Screenshots
 
- [Alt Text 1](./assets/screenshot_1.png)
- [Alt Text 2](./assets/screenshot_2.png)
- [Alt Text 3](./assets/screenshot_3.png)
- 
+*(Replace the placeholders below with actual images)*
+
+[!Alt Text](../assets/screenshot_1.png)
+[!Alt Text](../assets/screenshot_2.png)
+[!Alt Text](../assets/screenshot_3.png)
+
 ---
 
 ## 🧪 Installation & Setup
