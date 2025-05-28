@@ -133,7 +133,3 @@ Let’s connect:
 - **📷 Instagram:** [@mr._perfect_1004](https://instagram.com/mr._perfect_1004)
 
 ---
-
-## 📄 License
-
-This project is open-source and available under the [MIT License](LICENSE).
