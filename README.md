@@ -7,7 +7,7 @@
 ## 🚀 Live Demo
 
 Experience VibeBlog live:  
-👉 [VibeBlog Live Demo](#) *(Replace this with your deployment link)*
+👉 [VibeBlog Live Demo](#) *(https://vibe-blog-three.vercel.app)*
 
 ---
 
