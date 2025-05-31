@@ -64,6 +64,7 @@ VibeBlog/
 ├── users.json
 ├── vercel.json
 ├── assets/
+    ├── cover_page.png
 │   ├── screenshot_1.png
 │   ├── screenshot_2.png
 │   └── screenshot_3.png
