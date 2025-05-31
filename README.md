@@ -75,6 +75,7 @@ VibeBlog/
 │       └── script.js
 └── templates/
     ├── base.html
+    ├── 404.html
     ├── index.html
     ├── login.html
     ├── signup.html
