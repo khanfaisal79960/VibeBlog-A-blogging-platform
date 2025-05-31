@@ -120,3 +120,5 @@ Then open your browser at: [http://127.0.0.1:5000/](http://127.0.0.1:5000/)
 - ✍️ [Medium](https://medium.com/@khanfaisal79960)
 - 📸 [Instagram](https://instagram.com/mr._perfect_1004)
 - 💻 [GitHub](https://github.com/khanfaisal79960)
+
+---
