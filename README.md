@@ -8,7 +8,7 @@
 
 ## 🌐 Live Demo
 
-👉 [**View Live Demo**](https://vibe-blog-three.vercel.app)
+👉 [**View Live Demo**](https://vibe-blog-ten.vercel.app)
 
 ---
 
