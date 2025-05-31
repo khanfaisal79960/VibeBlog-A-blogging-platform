@@ -4,38 +4,38 @@
 
 {% block content %}
 <section class="my-8 bg-gray-800 rounded-xl shadow-2xl p-8 md:p-12 animate-fade-in-scale">
-    <h1 class="text-5xl font-extrabold text-center mb-10 text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-red-400">
+    <h1
+        class="text-5xl font-extrabold text-center mb-10 text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-red-400">
         Edit Your Vibe
     </h1>
 
     <form method="POST" action="{{ url_for('edit_post', post_id=post.id) }}" class="space-y-6">
         <div>
             <label for="title" class="block text-gray-300 text-lg font-bold mb-2">Title</label>
-            <input type="text" id="title" name="title" value="{{ post.title }}" required
-                   class="form-input w-full">
+            <input type="text" id="title" name="title" value="{{ post.title }}" required class="form-input w-full">
         </div>
         <div>
             <label for="author" class="block text-gray-300 text-lg font-bold mb-2">Author</label>
-            <input type="text" id="author" name="author" value="{{ post.author }}" required
-                   class="form-input w-full">
+            <input type="text" id="author" name="author" value="{{ post.author }}" required class="form-input w-full">
         </div>
         <div>
             <label for="image_url" class="block text-gray-300 text-lg font-bold mb-2">Image URL (Optional)</label>
-            <input type="url" id="image_url" name="image_url" value="{{ post.image_url }}"
-                   class="form-input w-full" placeholder="e.g., https://placehold.co/800x450/4B0082/FFFFFF?text=VibeBlog+Image">
+            <input type="url" id="image_url" name="image_url" value="{{ post.image_url }}" class="form-input w-full"
+                placeholder="e.g., https://placehold.co/800x450/4B0082/FFFFFF?text=VibeBlog+Image">
             <p class="text-sm text-gray-500 mt-2">Leave blank for a default placeholder image.</p>
         </div>
         <div>
             <label for="tags" class="block text-gray-300 text-lg font-bold mb-2">Tags (comma-separated)</label>
-            <input type="text" id="tags" name="tags" value="{{ post.tags_input }}"
-                   class="form-input w-full" placeholder="e.g., Python, WebDev, Tutorial">
+            <input type="text" id="tags" name="tags" value="{{ post.tags_input }}" class="form-input w-full"
+                placeholder="e.g., Python, WebDev, Tutorial">
             <p class="text-sm text-gray-500 mt-2">Separate multiple tags with commas.</p>
         </div>
         <div>
             <label for="content" class="block text-gray-300 text-lg font-bold mb-2">Content (Markdown Supported)</label>
             <textarea id="content" name="content" rows="15" required
-                      class="form-textarea w-full">{{ post.content }}</textarea>
-            <p class="text-sm text-gray-500 mt-2">You can use Markdown for formatting (e.g., **bold**, *italic*, # headings, `code`).</p>
+                class="form-textarea w-full" style="color: #000;">{{ post.content }}</textarea>
+            <p class="text-sm text-gray-500 mt-2">You can use Markdown for formatting (e.g., **bold**, *italic*, #
+                headings, `code`).</p>
         </div>
         <div class="flex justify-end gap-4">
             <button type="button" id="previewButton" class="btn-secondary px-8 py-3 text-lg">
@@ -51,37 +51,49 @@
     </form>
 
     <div id="markdownPreview" class="hidden mt-8 p-6 bg-gray-900 rounded-xl shadow-inner border border-purple-700">
-        <h2 class="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-400 mb-4">Live Preview</h2>
+        <h2 class="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-400 mb-4">
+            Live Preview</h2>
         <div class="markdown-content text-gray-200"></div>
     </div>
 </section>
 
 <style>
-
     @keyframes fade-in-scale {
-        0% { opacity: 0; transform: scale(0.95); }
-        100% { opacity: 1; transform: scale(1); }
+        0% {
+            opacity: 0;
+            transform: scale(0.95);
+        }
+
+        100% {
+            opacity: 1;
+            transform: scale(1);
+        }
     }
+
     .animate-fade-in-scale {
         animation: fade-in-scale 0.5s ease-out forwards;
+    }
+
+    .form-input {
+        color: #000
     }
 </style>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/markdown-it/13.0.1/markdown-it.min.js"></script>
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
         const previewButton = document.getElementById('previewButton');
         const contentTextarea = document.getElementById('content');
         const markdownPreviewDiv = document.getElementById('markdownPreview');
         const markdownContentDiv = markdownPreviewDiv.querySelector('.markdown-content');
 
         const md = window.markdownit({
-            html: true, 
-            linkify: true, 
+            html: true,
+            linkify: true,
             typographer: true
         });
 
-        previewButton.addEventListener('click', function() {
+        previewButton.addEventListener('click', function () {
             const markdownText = contentTextarea.value;
             markdownContentDiv.innerHTML = md.render(markdownText);
             markdownPreviewDiv.classList.toggle('hidden'); // Toggle visibility
